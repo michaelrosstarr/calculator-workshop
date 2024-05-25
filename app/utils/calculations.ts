@@ -33,7 +33,6 @@ const hexCalculate = (first: string | number, second: string | number, type: str
 
         return convertToHexadecimal(answer);
 
-
     } catch (e) {
         throw e;
     }
