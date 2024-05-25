@@ -14,6 +14,15 @@ describe('Basic math operations', () => {
         expect(hexCalculate(-5, 'A', '+')).toBe('5');
     });
 
+    it('should throw errors as inputs are greater than 3 digits', () => {
+        expect(() => hexCalculate('2710', 5, '+')).toThrow("First greater than 3 digits.");
+        expect(() => hexCalculate(5, '2710', '+')).toThrow("Second greater than 3 digits.");
+    })
+
+    it('should add 271 and 271 to equal 4E2', () => {
+        expect(hexCalculate('271', '271', '+')).toBe('4e2');
+    })
+
     // Subtraction tests
     it('should subtract 7 from 10 to equal 3', () => {
         expect(hexCalculate('A', 7, '-')).toBe('3');
