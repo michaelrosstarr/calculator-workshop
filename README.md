@@ -11,10 +11,17 @@ Michael Tarr u20537833
 * Testing Frameworks -> Cypress (frontend) and Jest (general)
 
 ## Functional Requirements
-| Category              | Requirements                                                                                         |
-| --------------------- | ---------------------------------------------------------------------------------------------------- |
-| Input                 | Calculator app should accept integer numbers from 0 to 999                                           |
-| Output                | Calculator should be able to display the result of any calculation up to 6 digits (0 to 999999)      |
-| Non-Negative Numbers  | Not return any negative numbers                                                                      |
-| Integer Results       | Only display whole numbers from 0 to 999999 (no decimals)                                            |
-| Arithmetic Operations | Perform basic arthimetic operations: + (addition), - (subtraction), / (division), * (multiplication) |
+### Input & Output
+* Should only accept hexadecimal values with a maximum length of 3.
+* Should return only positive hexadecimal values with a maximum length of 6.
+* Should not return any negative values.
+* Should not return any decimal places.
+* Should return the respective error messages as required.
+
+### Calculations
+* Should be able to perform the following actions between two values:
+  * Multiplication
+  * Division
+  * Addition
+  * Subtraction
+* Should be able to store all problems and solutions in a database.
