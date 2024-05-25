@@ -21,10 +21,12 @@ const hexCalculate = (first: string | number, second: string | number, type: str
 
         switch (type) {
             case '+': answer = addition(first, second); break;
-            // case '-': answer = subtraction(first, second); break;
+            case '-': answer = subtraction(first, second); break;
             // case '*': answer = multiply(first, second); break;
             // case '/': answer = divide(first, second); break;
         }
+
+        console.log(first, second, answer);
 
         if (answer === -999999999) throw new Error("Arithmetic type not provided.");
         if (answer.toString().length > 6) throw new Error("Answer greater than 6 digits.");

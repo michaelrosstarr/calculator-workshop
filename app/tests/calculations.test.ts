@@ -15,13 +15,13 @@ describe('Basic math operations', () => {
     });
 
     // Subtraction tests
-    // it('should subtract 7 from 10 to equal 3', () => {
-    //     expect(hexCalculate(10, 7, '-')).toBe(3);
-    // });
+    it('should subtract 7 from 10 to equal 3', () => {
+        expect(hexCalculate('A', 7, '-')).toBe('3');
+    });
 
-    // it('should subtract 10 from -5 to equal 5', () => {
-    //     expect(hexCalculate(-5, 10, '-')).toBe(-15);
-    // });
+    it('should subtract 10 from -5 should throw negative number error', () => {
+        expect(() => hexCalculate(-5, 'A', '-')).toThrow("Answer is a negative number.");
+    });
 
     // // Multiplication tests
     // it('should multiply 2 and 4 to equal 8', () => {
