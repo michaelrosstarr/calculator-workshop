@@ -1,3 +1,7 @@
+/**
+ * Test suite to test basic math operations on various numbers, across addition, subtraction, multiplication and division.
+ */
+
 describe('Basic math operations', () => {
     // Addition tests
     it('should add 2 and 3 to equal 5', () => {
