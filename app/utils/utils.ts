@@ -4,7 +4,7 @@
  * @returns A decimal.
  */
 const convertToDecimal = (value: string): number => {
-    return parseInt(value);
+    return Number(`0x${value}`);
 }
 
 /**
@@ -13,7 +13,7 @@ const convertToDecimal = (value: string): number => {
  * @returns A hexadecimal.
  */
 const convertToHexadecimal = (value: number): string => {
-    return value.toString();
+    return value.toString(16);
 }
 
 export { convertToDecimal, convertToHexadecimal };

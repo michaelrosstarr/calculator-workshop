@@ -8,18 +8,35 @@ import { convertToDecimal, convertToHexadecimal } from "./utils";
  * @returns 
  */
 const hexCalculate = (first: string | number, second: string | number, type: string): string | number => {
+
+    if (first.toString().length > 3) throw new Error("First greater than 3 digits.");
+    if (second.toString().length > 3) throw new Error("Second greater than 3 digits.");
+
+    first = convertToDecimal(first.toString());
+    second = convertToDecimal(second.toString());
+
     try {
+
+        let answer: number = -999999999;
+
         switch (type) {
-            case '+': return addition(first, second);
-            case '-': return -1;
-            case '*': return -1;
-            case '*': return -1;
+            case '+': answer = addition(first, second); break;
+            // case '-': answer = subtraction(first, second); break;
+            // case '*': answer = multiply(first, second); break;
+            // case '/': answer = divide(first, second); break;
         }
+
+        if (answer === -999999999) throw new Error("Arithmetic type not provided.");
+        if (answer.toString().length > 6) throw new Error("Answer greater than 6 digits.");
+        if (answer < 0) throw new Error("Answer is a negative number.");
+        if (answer % 1 != 0) throw new Error("Answer contains decimal point.");
+
+        return answer;
+
+
     } catch (e) {
         throw e;
     }
-
-    throw new Error("No type provided.")
 }
 
 /**
@@ -28,18 +45,8 @@ const hexCalculate = (first: string | number, second: string | number, type: str
  * @param second 
  * @returns 
  */
-const addition = (first: string | number, second: string | number): string => {
-
-    if (first.toString().length > 3) throw new Error("First greater than 3 digits.");
-    if (second.toString().length > 3) throw new Error("Second greater than 3 digits.");
-
-    const answer = convertToDecimal(first as string) + convertToDecimal(second as string) as number;
-
-    if (answer < 0) throw new Error("Answer is a negative number.");
-    if (answer.toString().length > 6) throw new Error("Answer greater than 6 digits.");
-    if (answer % 1 != 0) throw new Error("Answer contains decimal point.");
-
-    return convertToHexadecimal(answer);
+const addition = (first: number, second: number): number => {
+    return first + second;
 }
 
 /**
