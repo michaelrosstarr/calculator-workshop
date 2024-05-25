@@ -8,12 +8,17 @@ import { convertToDecimal, convertToHexadecimal } from "./utils";
  * @returns 
  */
 const hexCalculate = (first: string | number, second: string | number, type: string): string | number => {
-    switch (type) {
-        case '+': return addition(first, second);
-        case '-': return -1;
-        case '*': return -1;
-        case '*': return -1;
+    try {
+        switch (type) {
+            case '+': return addition(first, second);
+            case '-': return -1;
+            case '*': return -1;
+            case '*': return -1;
+        }
+    } catch (e) {
+        throw e;
     }
+
     throw new Error("No type provided.")
 }
 

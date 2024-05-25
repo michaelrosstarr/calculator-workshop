@@ -32,12 +32,12 @@ describe('Basic math operations', () => {
         expect(hexCalculate(-3, 5, '*')).toBe(-15);
     });
 
-    // // Division tests
-    // it('should divide 10 by 2 to equal 5', () => {
-    //     expect(divide(10, 2)).toBe(5);
-    // });
+    // Division tests
+    it('should divide 10 by 2 to equal 5', () => {
+        expect(hexCalculate(10, 2, '/')).toBe(5);
+    });
 
-    // it('should handle division by zero', () => {
-    //     expect(() => divide(10, 0)).toThrow("Division by zero");
-    // });
+    it('should handle division by zero', () => {
+        expect(() => hexCalculate(10, 0, '/')).toThrow("Division by zero");
+    });
 });
