@@ -1,6 +1,23 @@
 import { convertToDecimal, convertToHexadecimal } from "./utils";
 
 /**
+ * Used as a middleware of sorts.
+ * @param first 
+ * @param second 
+ * @param type 
+ * @returns 
+ */
+const hexCalculate = (first: string | number, second: string | number, type: string): string | number => {
+    switch (type) {
+        case '+': return addition(first, second);
+        case '-': return -1;
+        case '*': return -1;
+        case '*': return -1;
+    }
+    throw new Error("No type provided.")
+}
+
+/**
  * Adds first and second
  * @param first 
  * @param second 
