@@ -23,14 +23,14 @@ describe('Basic math operations', () => {
         expect(hexCalculate(-5, 10, '-')).toBe(-15);
     });
 
-    // // Multiplication tests
-    // it('should multiply 2 and 4 to equal 8', () => {
-    //     expect(multiply(2, 4)).toBe(8);
-    // });
+    // Multiplication tests
+    it('should multiply 2 and 4 to equal 8', () => {
+        expect(hexCalculate(2, 4, '*')).toBe(8);
+    });
 
-    // it('should multiply -3 and 5 to equal -15', () => {
-    //     expect(multiply(-3, 5)).toBe(-15);
-    // });
+    it('should multiply -3 and 5 to equal -15', () => {
+        expect(hexCalculate(-3, 5, '*')).toBe(-15);
+    });
 
     // // Division tests
     // it('should divide 10 by 2 to equal 5', () => {
