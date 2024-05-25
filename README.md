@@ -22,7 +22,6 @@ Michael Tarr u20537833
 * Should be able to perform the following actions between two values:
   * Multiplication
   * Division
-  * 
   * Addition
   * Subtraction
 * Should be able to store all problems and solutions in a database.
