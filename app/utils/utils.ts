@@ -4,7 +4,7 @@
  * @returns A decimal.
  */
 const convertToDecimal = (value: string): number => {
-    return Number(`0x${value}`);
+    return parseInt(value, 16);
 }
 
 /**

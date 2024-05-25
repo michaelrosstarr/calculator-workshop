@@ -31,7 +31,7 @@ const hexCalculate = (first: string | number, second: string | number, type: str
         if (answer < 0) throw new Error("Answer is a negative number.");
         if (answer % 1 != 0) throw new Error("Answer contains decimal point.");
 
-        return answer;
+        return convertToHexadecimal(answer);
 
 
     } catch (e) {
