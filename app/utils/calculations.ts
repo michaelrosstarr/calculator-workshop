@@ -8,14 +8,14 @@ import { convertToDecimal, convertToHexadecimal } from "./utils";
  */
 const addition = (first: string | number, second: string | number): string => {
 
-    if (first.toString().length > 3) return "First greater than 3 digits.";
-    if (second.toString().length > 3) return "Second greater than 3 digits."
+    if (first.toString().length > 3) throw new Error("First greater than 3 digits.");
+    if (second.toString().length > 3) throw new Error("Second greater than 3 digits.");
 
     const answer = convertToDecimal(first as string) + convertToDecimal(second as string) as number;
 
-    if (answer < 0) return "Answer is a negative number.";
-    if (answer.toString().length > 6) return "Answer greater than 6 digits."
-    if (answer % 1 != 0) return "Answer contains decimal point."
+    if (answer < 0) throw new Error("Answer is a negative number.");
+    if (answer.toString().length > 6) throw new Error("Answer greater than 6 digits.");
+    if (answer % 1 != 0) throw new Error("Answer contains decimal point.");
 
     return convertToHexadecimal(answer);
 }
