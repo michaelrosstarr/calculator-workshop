@@ -79,4 +79,4 @@ const divide = (first: string, second: string): string => {
     return convertToHexadecimal(value);
 }
 
-export { addition, subtraction, multiply, divide };
+export { addition, subtraction, multiply, divide, hexCalculate };
