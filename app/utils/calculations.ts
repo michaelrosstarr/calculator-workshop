@@ -26,8 +26,6 @@ const hexCalculate = (first: string | number, second: string | number, type: str
             // case '/': answer = divide(first, second); break;
         }
 
-        console.log(first, second, answer);
-
         if (answer === -999999999) throw new Error("Arithmetic type not provided.");
         if (answer.toString().length > 6) throw new Error("Answer greater than 6 digits.");
         if (answer < 0) throw new Error("Answer is a negative number.");

@@ -32,6 +32,15 @@ describe('Basic math operations', () => {
         expect(() => hexCalculate(-5, 'A', '-')).toThrow("Answer is a negative number.");
     });
 
+    it('should throw errors as inputs are greater than 3 digits', () => {
+        expect(() => hexCalculate('2710', 5, '-')).toThrow("First greater than 3 digits.");
+        expect(() => hexCalculate(5, '2710', '-')).toThrow("Second greater than 3 digits.");
+    })
+
+    it('should subtract 5 from A, should return 5', () => {
+        expect(hexCalculate('A', 5, '-')).toBe('5');
+    });
+
     // // Multiplication tests
     // it('should multiply 2 and 4 to equal 8', () => {
     //     expect(hexCalculate(2, 4, '*')).toBe(8);
