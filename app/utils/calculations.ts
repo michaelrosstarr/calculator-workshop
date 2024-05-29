@@ -64,12 +64,8 @@ const subtraction = (first: number, second: number): number => {
  * @param second 
  * @returns 
  */
-const multiply = (first: string, second: string): string => {
-    const value = convertToDecimal(first) * convertToDecimal(second) as number;
-
-    if (value < 0) return "Cannot return negative numbers.";
-
-    return convertToHexadecimal(value);
+const multiply = (first: number, second: number): number => {
+    return first * second;
 }
 
 /**
