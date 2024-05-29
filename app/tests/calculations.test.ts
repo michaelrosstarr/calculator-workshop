@@ -43,12 +43,16 @@ describe('Basic math operations', () => {
 
     // Multiplication tests
     it('should multiply 2 and 4 to equal 8', () => {
-        expect(hexCalculate(2, 4, '*')).toBe(8);
+        expect(hexCalculate(2, 4, '*')).toBe('8');
     });
 
-    it('should multiply -3 and 5 to equal -15', () => {
+    it('should multiply -3 and 5 should throw negative number error', () => {
         expect(() => hexCalculate(-3, 5, '*')).toThrow("Answer is a negative number.");
     });
+
+    it('should multiply FFF and FFF to equal FFE001', () => {
+        expect(hexCalculate('FFF', 'FFF', '*')).toBe('ffe001');
+    })
 
     // // Division tests
     // it('should divide 10 by 2 to equal 5', () => {

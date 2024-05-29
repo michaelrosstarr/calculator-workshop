@@ -27,11 +27,14 @@ const hexCalculate = (first: string | number, second: string | number, type: str
         }
 
         if (answer === -999999999) throw new Error("Arithmetic type not provided.");
-        if (answer.toString().length > 6) throw new Error("Answer greater than 6 digits.");
         if (answer < 0) throw new Error("Answer is a negative number.");
         if (answer % 1 != 0) throw new Error("Answer contains decimal point.");
 
-        return convertToHexadecimal(answer);
+        const convertedHex = convertToHexadecimal(answer);
+
+        if (convertedHex.toString().length > 6) throw new Error("Answer greater than 6 digits.");
+
+        return convertedHex;
 
     } catch (e) {
         throw e;
