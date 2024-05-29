@@ -77,12 +77,9 @@ const multiply = (first: number, second: number): number => {
  * @param second 
  * @returns 
  */
-const divide = (first: string, second: string): string => {
-    const value = convertToDecimal(first) / convertToDecimal(second) as number;
-
-    if (value < 0) return "Cannot return negative numbers.";
-
-    return convertToHexadecimal(value);
+const divide = (first: number, second: number): number => {
+    if (second === 0) throw new Error("Cannot divide by 0.");
+    return first / second;
 }
 
 export { addition, subtraction, multiply, divide, hexCalculate };
