@@ -63,13 +63,19 @@ describe('Basic math operations', () => {
         })
     })
 
+    describe('Division Tests', () => {
 
-    // // Division tests
-    // it('should divide 10 by 2 to equal 5', () => {
-    //     expect(hexCalculate(10, 2, '/')).toBe(5);
-    // });
+        it('should throw error cause 10 divide 3 contains a decimal point', () => {
+            expect(() => hexCalculate('A', 3, '/')).toThrow("Answer contains decimal point.");
+        });
 
-    // it('should handle division by zero', () => {
-    //     expect(() => hexCalculate(10, 0, '/')).toThrow("Division by zero");
-    // });
+        it('should divide 10 by 2 to equal 5', () => {
+            expect(hexCalculate('A', 2, '/')).toBe('5');
+        });
+
+        it('should handle division by zero', () => {
+            expect(() => hexCalculate('A', 0, '/')).toThrow("Cannot divide by 0.");
+        });
+    })
+
 });

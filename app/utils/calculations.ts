@@ -23,7 +23,7 @@ const hexCalculate = (first: string | number, second: string | number, type: str
             case '+': answer = addition(first, second); break;
             case '-': answer = subtraction(first, second); break;
             case '*': answer = multiply(first, second); break;
-            // case '/': answer = divide(first, second); break;
+            case '/': answer = divide(first, second); break;
         }
 
         if (answer === -999999999) throw new Error("Arithmetic type not provided.");
