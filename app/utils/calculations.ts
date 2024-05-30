@@ -10,7 +10,7 @@ import { convertToDecimal, convertToHexadecimal } from "./utils";
 const hexCalculate = (first: string | number, second: string | number, type: string): string | number => {
 
     if (first.toString().length > 3) throw new Error("First greater than 3 digits.");
-    if (second.toString().length > 3) throw new Error("Second greater than 3 digits.");
+    if ((!(second as string).startsWith('-') && second.toString().length > 4) || second.toString().length > 3) throw new Error("Second greater than 3 digits.");
 
     first = convertToDecimal(first.toString());
     second = convertToDecimal(second.toString());
