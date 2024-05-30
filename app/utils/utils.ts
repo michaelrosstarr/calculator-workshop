@@ -1,3 +1,11 @@
+import { type ClassValue, clsx } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+    return twMerge(clsx(inputs))
+}
+
+
 /**
  * Util function to convert any string to a decimal, its easier to do calculations on a decimal than a hexadecimal.
  * @param value Is the value that you want to convert to decimal.
