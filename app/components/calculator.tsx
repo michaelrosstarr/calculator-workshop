@@ -5,8 +5,19 @@ import { useState } from 'react'
 import { useToast } from './ui/use-toast'
 import { Toaster } from './ui/toaster'
 import { hexCalculate } from 'app/utils/calculations'
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from './ui/dialog'
+import { CrumpledPaperIcon } from '@radix-ui/react-icons'
+import { Alert, AlertDescription, AlertTitle } from './ui/alert'
+import { Terminal } from 'lucide-react'
 
-export default function Calculator() {
+export default function Calculator({ rows, add }: any) {
 
     const { toast } = useToast();
 
@@ -14,10 +25,11 @@ export default function Calculator() {
     const [second, setSecond] = useState<string>('');
     const [result, setResult] = useState<string>('');
     const [type, setType] = useState<string>('');
+    const [db, setDB] = useState<any>(rows);
 
     const [errors, setErrors] = useState<string[]>([]);
 
-    const calculate = () => {
+    const calculate = async () => {
         if (!first) {
             return toast({
                 variant: 'destructive',
@@ -49,10 +61,10 @@ export default function Calculator() {
                 newSecond = newSecond.slice(1, -1);
             }
 
-            console.log(newSecond);
-
             const answer = hexCalculate(first, newSecond, type) as string;
             setResult(answer);
+            const results = await add(first, second, answer, type);
+            setDB(results);
         } catch (e) {
             toast({
                 variant: 'destructive',
@@ -60,7 +72,6 @@ export default function Calculator() {
                 description: `${(e as Error).message}`,
             })
         }
-
     }
 
     const handleTyping = (value: string) => {
@@ -231,7 +242,7 @@ export default function Calculator() {
                     <div className="space-y-2">
                         <div className="grid grid-cols-4 gap-2">
                             {['C', 'D', 'E', 'F', '8', '9', 'A', 'B', '4', '5', '6', '7', '0', '1', '2', '3'].map((item: string, key: number) => {
-                                return <Button onClick={() => handleTyping(item)} className="rounded-full bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-200 hover:bg-gray-400 dark:hover:bg-gray-500">
+                                return <Button key={key} onClick={() => handleTyping(item)} className="rounded-full bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-200 hover:bg-gray-400 dark:hover:bg-gray-500">
                                     {item}
                                 </Button>
                             })}
@@ -240,6 +251,35 @@ export default function Calculator() {
                 </div>
             </div>
             <Toaster />
+            <Dialog>
+                <DialogTrigger className='fixed right-5 bottom-5 bg-slate-900 text-white p-2 rounded-xl'><CrumpledPaperIcon className='h-8 w-8' /></DialogTrigger>
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>Calculation History</DialogTitle>
+                        <DialogDescription>
+
+                        </DialogDescription>
+                    </DialogHeader>
+                    <div className='space-y-2 flex flex-col'>
+                        {db.length === 0 && <Alert>
+                            <Terminal className="h-4 w-4" />
+                            <AlertTitle>Heads up!</AlertTitle>
+                            <AlertDescription>
+                                There are not past database entries for this calculator. Try some math and look again later!
+                            </AlertDescription>
+                        </Alert>}
+                        {db.reverse().map((entry: {
+                            first: string,
+                            second: string,
+                            answer: string,
+                            type: string
+                        }, index: number) => {
+                            return <span key={index} className='bg-gray-200 rounded-md p-2 text-center'>{entry.first.toUpperCase()} {entry.type.toUpperCase()} {entry.second.toUpperCase()} = {entry.answer.toUpperCase()}</span>
+                        })}
+                    </div>
+                </DialogContent>
+            </Dialog>
+
         </div >
     )
 }
