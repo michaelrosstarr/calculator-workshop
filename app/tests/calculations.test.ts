@@ -77,6 +77,10 @@ describe('Basic math operations', () => {
             expect(() => hexCalculate('A', 0, '/')).toThrow('Cannot divide by 0.');
         });
 
+        it('should divide 0 by 5 to equal 0', () => {
+            expect(hexCalculate(0, '5', '/')).toBe('0');
+        })
+
     })
 
 });
