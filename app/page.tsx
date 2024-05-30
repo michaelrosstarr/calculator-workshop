@@ -2,7 +2,7 @@ import { sql } from "@vercel/postgres";
 import Calculator from "./components/calculator";
 
 export const metadata = {
-  title: "App Router",
+  title: "Calculator",
 };
 
 export default async function Page() {

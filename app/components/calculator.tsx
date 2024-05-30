@@ -252,8 +252,8 @@ export default function Calculator({ rows, add }: any) {
             </div>
             <Toaster />
             <Dialog>
-                <DialogTrigger className='fixed right-5 bottom-5 bg-slate-900 text-white p-2 rounded-xl'><CrumpledPaperIcon className='h-8 w-8' /></DialogTrigger>
-                <DialogContent>
+                <DialogTrigger className='fixed right-5 bottom-5 bg-slate-900 dark:bg-gray-700 text-white p-2 rounded-xl dark:text-gray-200'><CrumpledPaperIcon className='h-8 w-8' /></DialogTrigger>
+                <DialogContent className='dark:bg-gray-900 dark:text-white dark:border-0'>
                     <DialogHeader>
                         <DialogTitle>Calculation History</DialogTitle>
                         <DialogDescription>
@@ -274,7 +274,7 @@ export default function Calculator({ rows, add }: any) {
                             answer: string,
                             type: string
                         }, index: number) => {
-                            return <span key={index} className='bg-gray-200 rounded-md p-2 text-center'>{entry.first.toUpperCase()} {entry.type.toUpperCase()} {entry.second.toUpperCase()} = {entry.answer.toUpperCase()}</span>
+                            return <span key={index} className='bg-gray-200 rounded-md p-2 text-center dark:bg-gray-700'>{entry.first.toUpperCase()} {entry.type.toUpperCase()} {entry.second.toUpperCase()} = {entry.answer.toUpperCase()}</span>
                         })}
                     </div>
                 </DialogContent>
