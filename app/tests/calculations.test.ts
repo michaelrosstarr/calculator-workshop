@@ -2,7 +2,7 @@
  * Test suite to test basic math operations on various numbers, across addition, subtraction, multiplication and division.
  */
 
-import { hexCalculate } from "app/utils/calculations";
+import { hexCalculate } from 'app/utils/calculations';
 
 describe('Basic math operations', () => {
 
@@ -16,8 +16,8 @@ describe('Basic math operations', () => {
         });
 
         it('should throw errors as inputs are greater than 3 digits', () => {
-            expect(() => hexCalculate('2710', 5, '+')).toThrow("First greater than 3 digits.");
-            expect(() => hexCalculate(5, '2710', '+')).toThrow("Second greater than 3 digits.");
+            expect(() => hexCalculate('2710', 5, '+')).toThrow('First greater than 3 digits.');
+            expect(() => hexCalculate(5, '2710', '+')).toThrow('Second greater than 3 digits.');
         })
 
         it('should add 271 and 271 to equal 4E2', () => {
@@ -31,12 +31,12 @@ describe('Basic math operations', () => {
         });
 
         it('should subtract 10 from -5 should throw negative number error', () => {
-            expect(() => hexCalculate(-5, 'A', '-')).toThrow("Answer is a negative number.");
+            expect(() => hexCalculate(-5, 'A', '-')).toThrow('Answer is a negative number.');
         });
 
         it('should throw errors as inputs are greater than 3 digits', () => {
-            expect(() => hexCalculate('2710', 5, '-')).toThrow("First greater than 3 digits.");
-            expect(() => hexCalculate(5, '2710', '-')).toThrow("Second greater than 3 digits.");
+            expect(() => hexCalculate('2710', 5, '-')).toThrow('First greater than 3 digits.');
+            expect(() => hexCalculate(5, '2710', '-')).toThrow('Second greater than 3 digits.');
         })
 
         it('should subtract 5 from A, should return 5', () => {
@@ -50,7 +50,7 @@ describe('Basic math operations', () => {
         });
 
         it('should multiply -3 and 5 should throw negative number error', () => {
-            expect(() => hexCalculate(-3, 5, '*')).toThrow("Answer is a negative number.");
+            expect(() => hexCalculate(-3, 5, '*')).toThrow('Answer is a negative number.');
         });
 
         it('should multiply FFF and FFF to equal FFE001', () => {
@@ -58,15 +58,15 @@ describe('Basic math operations', () => {
         })
 
         it('should throw errors as inputs are greater than 3 digits', () => {
-            expect(() => hexCalculate('2710', 5, '*')).toThrow("First greater than 3 digits.");
-            expect(() => hexCalculate(5, '2710', '*')).toThrow("Second greater than 3 digits.");
+            expect(() => hexCalculate('2710', 5, '*')).toThrow('First greater than 3 digits.');
+            expect(() => hexCalculate(5, '2710', '*')).toThrow('Second greater than 3 digits.');
         })
     })
 
     describe('Division Tests', () => {
 
         it('should throw error cause 10 divide 3 contains a decimal point', () => {
-            expect(() => hexCalculate('A', 3, '/')).toThrow("Answer contains decimal point.");
+            expect(() => hexCalculate('A', 3, '/')).toThrow('Answer contains decimal point.');
         });
 
         it('should divide 10 by 2 to equal 5', () => {
@@ -74,8 +74,9 @@ describe('Basic math operations', () => {
         });
 
         it('should handle division by zero', () => {
-            expect(() => hexCalculate('A', 0, '/')).toThrow("Cannot divide by 0.");
+            expect(() => hexCalculate('A', 0, '/')).toThrow('Cannot divide by 0.');
         });
+
     })
 
 });
