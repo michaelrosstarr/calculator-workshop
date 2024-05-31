@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from './ui/button'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useToast } from './ui/use-toast'
 import { Toaster } from './ui/toaster'
 import { hexCalculate } from 'app/utils/calculations'
@@ -13,21 +13,76 @@ import {
     DialogTitle,
     DialogTrigger,
 } from './ui/dialog'
-import { CrumpledPaperIcon } from '@radix-ui/react-icons'
+import { Switch } from './ui/switch'
+import { CrumpledPaperIcon, FileTextIcon } from '@radix-ui/react-icons'
 import { Alert, AlertDescription, AlertTitle } from './ui/alert'
-import { Terminal } from 'lucide-react'
+import { Terminal, Moon, Sun } from 'lucide-react'
+import { convertToDecimal } from 'app/utils/utils'
+import { useTheme } from 'next-themes'
 
 export default function Calculator({ rows, add }: any) {
 
     const { toast } = useToast();
+    const { theme, setTheme } = useTheme()
 
     const [first, setFirst] = useState<string>('');
     const [second, setSecond] = useState<string>('');
     const [result, setResult] = useState<string>('');
     const [type, setType] = useState<string>('');
     const [db, setDB] = useState<any>(rows);
+    const [showDecimal, setShowDecimal] = useState<boolean>(false);
 
     const [errors, setErrors] = useState<string[]>([]);
+
+    const handleKeyDown = (key: KeyboardEvent) => {
+        if (['C', 'D', 'E', 'F', '8', '9', 'A', 'B', '4', '5', '6', '7', '0', '1', '2', '3', '(', ')'].includes(key.key)) {
+            handleTyping(key.key);
+        }
+
+        if (key.key === '+') {
+            chainCalculation();
+            setType('+');
+        }
+
+        if (key.key === '-') {
+            if (!first) {
+                setFirst('-');
+            } else {
+                if (second.startsWith('(')) {
+                    setSecond(second + '-');
+                } else {
+                    chainCalculation();
+                    setType('-');
+                };
+            }
+        }
+
+        if (key.key === '*') {
+            chainCalculation();
+            setType('*')
+        }
+
+        if (key.key === '/') {
+            chainCalculation();
+            setType('/');
+        }
+
+        if (key.key === 'Escape') {
+            clear();
+        }
+
+        if (['Enter', '='].includes(key.key)) {
+            calculate();
+        }
+
+    }
+
+    useEffect(() => {
+        document.addEventListener('keydown', handleKeyDown);
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+        }
+    }, [handleKeyDown])
 
     const calculate = async () => {
         if (!first) {
@@ -150,6 +205,14 @@ export default function Calculator({ rows, add }: any) {
         setResult('');
     }
 
+    const chainCalculation = () => {
+        if (result) {
+            setFirst(result);
+            setResult('');
+            setSecond('');
+        }
+    }
+
     return (
         <div className="flex flex-col items-center justify-center h-screen bg-gray-100 dark:bg-gray-900">
             <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-8 w-full max-w-md">
@@ -175,15 +238,11 @@ export default function Calculator({ rows, add }: any) {
                                 !result && first && type && second && <>{second.toUpperCase()}</>
                             }
                             {
-                                result && <>Answer: {result.toUpperCase()}</>
+                                result && <>Answer: {showDecimal ? convertToDecimal(result) : result.toUpperCase()}</>
                             }
                         </div>
                         <Button onClick={() => {
-                            if (result) {
-                                setFirst(result);
-                                setResult('');
-                                setSecond('');
-                            }
+                            chainCalculation();
                             setType('+');
                         }} disabled={!first && true} className="rounded-full bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-200 hover:bg-gray-400 dark:hover:bg-gray-500">
                             +
@@ -195,11 +254,7 @@ export default function Calculator({ rows, add }: any) {
                                 if (second.startsWith('(')) {
                                     setSecond(second + '-');
                                 } else {
-                                    if (result) {
-                                        setFirst(result);
-                                        setResult('');
-                                        setSecond('');
-                                    }
+                                    chainCalculation();
                                     setType('-');
                                 };
                             }
@@ -207,21 +262,13 @@ export default function Calculator({ rows, add }: any) {
                             -
                         </Button>
                         <Button onClick={() => {
-                            if (result) {
-                                setFirst(result);
-                                setResult('');
-                                setSecond('');
-                            }
+                            chainCalculation();
                             setType('*')
                         }} disabled={!first && true} className="rounded-full bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-200 hover:bg-gray-400 dark:hover:bg-gray-500">
                             *
                         </Button>
                         <Button onClick={() => {
-                            if (result) {
-                                setFirst(result);
-                                setResult('');
-                                setSecond('');
-                            }
+                            chainCalculation();
                             setType('/');
                         }} disabled={!first && true} className="rounded-full bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-200 hover:bg-gray-400 dark:hover:bg-gray-500">
                             /
@@ -251,35 +298,40 @@ export default function Calculator({ rows, add }: any) {
                 </div>
             </div>
             <Toaster />
-            <Dialog>
-                <DialogTrigger className='fixed right-5 bottom-5 bg-slate-900 dark:bg-gray-700 text-white p-2 rounded-xl dark:text-gray-200'><CrumpledPaperIcon className='h-8 w-8' /></DialogTrigger>
-                <DialogContent className='dark:bg-gray-900 dark:text-white dark:border-0'>
-                    <DialogHeader>
-                        <DialogTitle>Calculation History</DialogTitle>
-                        <DialogDescription>
+            <div className='flex fixed bottom-5 right-5 gap-5'>
+                <Dialog>
+                    <DialogTrigger className='bg-slate-900 dark:bg-gray-700 text-white p-2 rounded-xl dark:text-gray-200'><CrumpledPaperIcon className='h-8 w-8' /></DialogTrigger>
+                    <DialogContent className='dark:bg-gray-900 dark:text-white dark:border-0'>
+                        <DialogHeader>
+                            <DialogTitle>Calculation History</DialogTitle>
+                            <DialogDescription>
 
-                        </DialogDescription>
-                    </DialogHeader>
-                    <div className='space-y-2 flex flex-col'>
-                        {db.length === 0 && <Alert>
-                            <Terminal className="h-4 w-4" />
-                            <AlertTitle>Heads up!</AlertTitle>
-                            <AlertDescription>
-                                There are not past database entries for this calculator. Try some math and look again later!
-                            </AlertDescription>
-                        </Alert>}
-                        {db.reverse().map((entry: {
-                            first: string,
-                            second: string,
-                            answer: string,
-                            type: string
-                        }, index: number) => {
-                            return <span key={index} className='bg-gray-200 rounded-md p-2 text-center dark:bg-gray-700'>{entry.first.toUpperCase()} {entry.type.toUpperCase()} {entry.second.toUpperCase()} = {entry.answer.toUpperCase()}</span>
-                        })}
-                    </div>
-                </DialogContent>
-            </Dialog>
+                            </DialogDescription>
+                        </DialogHeader>
+                        <div className='space-y-2 flex flex-col'>
+                            {db.length === 0 && <Alert>
+                                <Terminal className="h-4 w-4" />
+                                <AlertTitle>Heads up!</AlertTitle>
+                                <AlertDescription>
+                                    There are not past database entries for this calculator. Try some math and look again later!
+                                </AlertDescription>
+                            </Alert>}
+                            {db.reverse().map((entry: {
+                                first: string,
+                                second: string,
+                                answer: string,
+                                type: string
+                            }, index: number) => {
+                                return <span key={index} className='bg-gray-200 rounded-md p-2 text-center dark:bg-gray-700'>{entry.first.toUpperCase()} {entry.type.toUpperCase()} {entry.second.toUpperCase()} = {entry.answer.toUpperCase()}</span>
+                            })}
+                        </div>
+                    </DialogContent>
+                </Dialog>
+            </div>
 
+            <div className='fixed top-5 right-5 flex gap-4'>
+                <div className='dark:bg-gray-700 rounded-xl p-2 flex items-center justify-center text-black gap-2'>Show in Decimal<Switch onClick={() => setShowDecimal(!showDecimal)} /></div>
+            </div>
         </div >
     )
 }
