@@ -322,7 +322,7 @@ export default function Calculator({ rows, add }: any) {
                                 answer: string,
                                 type: string
                             }, index: number) => {
-                                return <span key={index} className='bg-gray-200 rounded-md p-2 text-center dark:bg-gray-700'>{entry.first.toUpperCase()} {entry.type.toUpperCase()} {entry.second.toUpperCase()} = {entry.answer.toUpperCase()}</span>
+                                return <span key={index} className='bg-gray-200 rounded-md p-2 text-center dark:bg-gray-700'>{entry.first.toUpperCase()} {entry.type.toUpperCase()} {entry.second.toUpperCase()} = {showDecimal ? convertToDecimal(entry.answer) : entry.answer.toUpperCase()}</span>
                             })}
                         </div>
                     </DialogContent>
@@ -330,7 +330,7 @@ export default function Calculator({ rows, add }: any) {
             </div>
 
             <div className='fixed top-5 right-5 flex gap-4'>
-                <div className='dark:bg-gray-700 rounded-xl p-2 flex items-center justify-center text-black gap-2'>Show in Decimal<Switch onClick={() => setShowDecimal(!showDecimal)} /></div>
+                <div className='dark:bg-gray-700 rounded-xl p-2 flex items-center justify-center text-black gap-2'>Show Result in Decimal<Switch onClick={() => setShowDecimal(!showDecimal)} /></div>
             </div>
         </div >
     )
