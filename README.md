@@ -6,6 +6,7 @@ My project for IMY773, which is a test-driven development assignment based aroun
 * Basic hexadecimal calculator.
 * View past calculations.
 * Convert between hexidecimal and decimal.
+* Chain calculations.
 
 ## Server Architecture and Technologies Used
 ![Basic Server Architecture](https://r2.sloththe.dev/zion/772%20Workshop.png)
@@ -26,7 +27,6 @@ For testing, I am exclusively using [Jest](https://jestjs.io/). Jest works well 
 * Should be able to perform the following actions between two values:
   * Multiplication
   * Division
-  * 
   * Addition
   * Subtraction
 * Should be able to store all problems and solutions in a database.
