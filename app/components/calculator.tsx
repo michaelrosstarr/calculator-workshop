@@ -211,17 +211,17 @@ export default function Calculator({ rows, add }: any) {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center h-screen bg-gray-100 dark:bg-gray-900">
-            <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-8 w-full max-w-md">
-                <div className="grid grid-cols-1 gap-4">
-                    <div className="grid grid-cols-4 gap-2 bg-gray-200 dark:bg-gray-700 rounded-lg p-4">
-                        {result && <div className="col-span-4 text-right text-md font-bold text-gray-600 dark:text-gray-200" id="result">
+        <div className='flex flex-col items-center justify-center h-screen bg-gray-100 dark:bg-gray-900'>
+            <div className='bg-white dark:bg-gray-800 shadow-lg rounded-lg p-8 w-full max-w-md'>
+                <div className='grid grid-cols-1 gap-4'>
+                    <div className='grid grid-cols-4 gap-2 bg-gray-200 dark:bg-gray-700 rounded-lg p-4'>
+                        {result && <div className='col-span-4 text-right text-md font-bold text-gray-600 dark:text-gray-200' id='result'>
                             {first.toUpperCase()} {type} {second.toUpperCase()}
                         </div>}
-                        {!result && first && type && <div className="col-span-4 text-right text-md font-bold text-gray-600 dark:text-gray-200" id="result">
+                        {!result && first && type && <div className='col-span-4 text-right text-md font-bold text-gray-600 dark:text-gray-200' id='result'>
                             {first.toUpperCase()} {type}
                         </div>}
-                        <div className="col-span-4 text-right text-2xl font-bold text-gray-800 dark:text-gray-200" id="result">
+                        <div className='col-span-4 text-right text-2xl font-bold text-gray-800 dark:text-gray-200' id='entryArea' data-testid='entryArea'>
                             {
                                 !result && !first && !second && <>Enter a number</>
                             }
@@ -241,7 +241,7 @@ export default function Calculator({ rows, add }: any) {
                         <Button onClick={() => {
                             chainCalculation();
                             setType('+');
-                        }} disabled={!first && true} className="rounded-full bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-200 hover:bg-gray-400 dark:hover:bg-gray-500">
+                        }} id='addition' data-testid='addition' disabled={!first && true} className='rounded-full bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-200 hover:bg-gray-400 dark:hover:bg-gray-500'>
                             +
                         </Button>
                         <Button onClick={() => {
@@ -255,38 +255,38 @@ export default function Calculator({ rows, add }: any) {
                                     setType('-');
                                 };
                             }
-                        }} className="rounded-full bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-200 hover:bg-gray-400 dark:hover:bg-gray-500">
+                        }} id='subtraction' data-testid='subtraction' className='rounded-full bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-200 hover:bg-gray-400 dark:hover:bg-gray-500'>
                             -
                         </Button>
                         <Button onClick={() => {
                             chainCalculation();
                             setType('*')
-                        }} disabled={!first && true} className="rounded-full bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-200 hover:bg-gray-400 dark:hover:bg-gray-500">
+                        }} id='multiply' data-testid='multiply' disabled={!first && true} className='rounded-full bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-200 hover:bg-gray-400 dark:hover:bg-gray-500'>
                             *
                         </Button>
                         <Button onClick={() => {
                             chainCalculation();
                             setType('/');
-                        }} disabled={!first && true} className="rounded-full bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-200 hover:bg-gray-400 dark:hover:bg-gray-500">
+                        }} id='divide' data-testid='divide' disabled={!first && true} className='rounded-full bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-200 hover:bg-gray-400 dark:hover:bg-gray-500'>
                             /
                         </Button>
-                        <Button onClick={() => clear()} className="rounded-full bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-200 hover:bg-gray-400 dark:hover:bg-gray-500">
+                        <Button onClick={() => clear()} id='clear' data-testid='clear' className='rounded-full bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-200 hover:bg-gray-400 dark:hover:bg-gray-500'>
                             Clear
                         </Button>
-                        <Button onClick={() => handleTyping('(')} className="rounded-full bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-200 hover:bg-gray-400 dark:hover:bg-gray-500">
+                        <Button id='openBracket' data-testid='openBracket' onClick={() => handleTyping('(')} className='rounded-full bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-200 hover:bg-gray-400 dark:hover:bg-gray-500'>
                             {'('}
                         </Button>
-                        <Button onClick={() => handleTyping(')')} className="rounded-full bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-200 hover:bg-gray-400 dark:hover:bg-gray-500">
+                        <Button id='closeBracket' data-testid='closeBracket' onClick={() => handleTyping(')')} className='rounded-full bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-200 hover:bg-gray-400 dark:hover:bg-gray-500'>
                             {')'}
                         </Button>
-                        <Button onClick={() => calculate()} className="rounded-full bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-200 hover:bg-gray-400 dark:hover:bg-gray-500">
+                        <Button id='equals' data-testid='equals' onClick={() => calculate()} className='rounded-full bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-200 hover:bg-gray-400 dark:hover:bg-gray-500'>
                             =
                         </Button>
                     </div>
-                    <div className="space-y-2">
-                        <div className="grid grid-cols-4 gap-2">
+                    <div className='space-y-2'>
+                        <div className='grid grid-cols-4 gap-2'>
                             {['C', 'D', 'E', 'F', '8', '9', 'A', 'B', '4', '5', '6', '7', '0', '1', '2', '3'].map((item: string, key: number) => {
-                                return <Button key={key} onClick={() => handleTyping(item)} className="rounded-full bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-200 hover:bg-gray-400 dark:hover:bg-gray-500">
+                                return <Button key={key} id={`key-${item}`} data-testid={`key-${item}`} onClick={() => handleTyping(item)} className='rounded-full bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-200 hover:bg-gray-400 dark:hover:bg-gray-500'>
                                     {item}
                                 </Button>
                             })}
@@ -307,13 +307,13 @@ export default function Calculator({ rows, add }: any) {
                         </DialogHeader>
                         <div className='space-y-2 flex flex-col'>
                             {db.length === 0 && <Alert>
-                                <Terminal className="h-4 w-4" />
+                                <Terminal className='h-4 w-4' />
                                 <AlertTitle>Heads up!</AlertTitle>
                                 <AlertDescription>
                                     There are not past database entries for this calculator. Try some math and look again later!
                                 </AlertDescription>
                             </Alert>}
-                            {db.reverse().map((entry: {
+                            {rows && db.reverse().map((entry: {
                                 first: string,
                                 second: string,
                                 answer: string,
