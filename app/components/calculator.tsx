@@ -23,7 +23,6 @@ import { useTheme } from 'next-themes'
 export default function Calculator({ rows, add }: any) {
 
     const { toast } = useToast();
-    const { theme, setTheme } = useTheme()
 
     const [first, setFirst] = useState<string>('');
     const [second, setSecond] = useState<string>('');
@@ -31,8 +30,6 @@ export default function Calculator({ rows, add }: any) {
     const [type, setType] = useState<string>('');
     const [db, setDB] = useState<any>(rows);
     const [showDecimal, setShowDecimal] = useState<boolean>(false);
-
-    const [errors, setErrors] = useState<string[]>([]);
 
     const handleKeyDown = (key: KeyboardEvent) => {
         if (['C', 'D', 'E', 'F', '8', '9', 'A', 'B', '4', '5', '6', '7', '0', '1', '2', '3', '(', ')'].includes(key.key)) {
