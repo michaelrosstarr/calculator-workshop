@@ -14,9 +14,9 @@ import {
     DialogTrigger,
 } from './ui/dialog'
 import { Switch } from './ui/switch'
-import { CrumpledPaperIcon, FileTextIcon } from '@radix-ui/react-icons'
+import { CrumpledPaperIcon } from '@radix-ui/react-icons'
 import { Alert, AlertDescription, AlertTitle } from './ui/alert'
-import { Terminal, Moon, Sun } from 'lucide-react'
+import { Terminal } from 'lucide-react'
 import { convertToDecimal } from 'app/utils/utils'
 import { useTheme } from 'next-themes'
 
