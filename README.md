@@ -1,4 +1,4 @@
-# IMY773 - Workshop (Michael Tarr u20537833)
+# IMY773 - Workshop
 
 My project for IMY773, which is a test-driven development assignment based around creating a hexadecimal calculator. We had to create all the tests, ui and "backend" features required. The project can be found at [workshop.sloththe.dev](https://workshop.sloththe.dev).
 
