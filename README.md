@@ -3,7 +3,7 @@
 Michael Tarr u20537833
 
 ## Server Architecture and Technologies Used
-![Basic Server Architecture](https://r2.sloththe.dev/zion/imy773-workshop-arch-v2.png)
+![Basic Server Architecture](https://r2.sloththe.dev/zion/772%20Workshop.png)
 
 * Frontend and Backend -> NextJS
 * Repo and DevOps -> GitHub
